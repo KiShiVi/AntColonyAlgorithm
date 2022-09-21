@@ -18,8 +18,8 @@ AntColonyAlgorithm::AntColonyAlgorithm(QWidget *parent)
 
     QHBoxLayout* amountOfNodesToolLayout = new QHBoxLayout();
     p_amountOfNodes = new QSpinBox();
-    p_amountOfNodes->setMinimum(2);
-    p_amountOfNodes->setMaximum(15);
+    p_amountOfNodes->setMinimum(3);
+    p_amountOfNodes->setMaximum(25);
     p_amountOfNodes->setValue(4);
 
     amountOfNodesToolLayout->addWidget(p_amountOfNodes);
@@ -83,6 +83,7 @@ AntColonyAlgorithm::AntColonyAlgorithm(QWidget *parent)
     parametersGridLayout->addWidget(new QLabel(" - m"), 3, 1);
 
     p_resultBrowser = new QTextEdit();
+    p_resultBrowser->setMinimumWidth(600);
     QPushButton* applyButton = new QPushButton("Start alghoritm");
     connect(applyButton, SIGNAL(clicked()), this, SLOT(onApplyButtonClicked()));
 
@@ -90,14 +91,14 @@ AntColonyAlgorithm::AntColonyAlgorithm(QWidget *parent)
 
     QVBoxLayout* rightSideToolsLayout = new QVBoxLayout();
     rightSideToolsLayout->addLayout(parametersGridLayout);
-    rightSideToolsLayout->addStretch(0);
+    //rightSideToolsLayout->addStretch(0);
     rightSideToolsLayout->addWidget(p_resultBrowser);
     rightSideToolsLayout->addWidget(applyButton);
     rightSideToolsLayout->addWidget(p_progressBar);
 
     QHBoxLayout* mainLayout = new QHBoxLayout();
     mainLayout->addLayout(graphMultiToolsLayout);
-    mainLayout->addStretch(0);
+    mainLayout->addSpacing(100);
     mainLayout->addLayout(rightSideToolsLayout);
 
     updateAmountOfInputFields(p_amountOfNodes->value());
