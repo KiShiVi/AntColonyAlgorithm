@@ -88,9 +88,13 @@
     <QtRcc Include="antcolonyalgorithm.qrc" />
     <QtMoc Include="antcolonyalgorithm.h" />
     <ClCompile Include="antcolonyalgorithm.cpp" />
+    <ClCompile Include="kernel.cpp" />
     <ClCompile Include="main.cpp" />
     <None Include="AntColonyAlgorithm.ico" />
     <ResourceCompile Include="AntColonyAlgorithm.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="kernel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
