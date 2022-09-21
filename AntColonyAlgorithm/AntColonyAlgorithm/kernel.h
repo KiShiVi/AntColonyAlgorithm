@@ -30,8 +30,12 @@ public:
 
 	void setNodeProperties(int i, int j, float distance, bool isEdge);
 	QString getNextGeneration();
+	QString getBestRoute();
 
 private:
+	QString bestRoute;
+	float   bestDistance;
+
 	int		m_amountOfNodes;
 	float	m_alphaParameter;
 	float	m_betaParameter;

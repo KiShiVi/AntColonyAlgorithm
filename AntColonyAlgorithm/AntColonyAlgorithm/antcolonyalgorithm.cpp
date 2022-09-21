@@ -13,6 +13,7 @@
 AntColonyAlgorithm::AntColonyAlgorithm(QWidget *parent)
     : QWidget(parent)
 {
+
     listOfGraphNodes = QList<QList<QSpinBox*>>();
 
     QHBoxLayout* amountOfNodesToolLayout = new QHBoxLayout();
@@ -168,5 +169,6 @@ void AntColonyAlgorithm::onApplyButtonClicked()
         p_progressBar->setValue(i);
         p_resultBrowser->append(QString::number(i) + ": " + kernel.getNextGeneration());
     }
+    p_resultBrowser->append("Best route: " + kernel.getBestRoute());
     p_progressBar->reset();
 }

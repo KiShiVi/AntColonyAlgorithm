@@ -24,6 +24,8 @@ Kernel::Kernel(int amountOfNodes, float alpha, float beta, float q, int t, int k
             if (i > j)
                 graphNodes[i].append(new Node(m_mParameter));
     }
+	bestRoute		= "";
+	bestDistance	= 0;
 }
 
 Kernel::~Kernel()
@@ -144,5 +146,17 @@ QString Kernel::getNextGeneration()
 
 	delete[] allDistances;
 	delete[] availableOfNodes;
+
+	if (gobalMinimalDistance < bestDistance || bestDistance == 0)
+	{
+		bestDistance = gobalMinimalDistance;
+		bestRoute = result;
+	}
+
 	return result;
+}
+
+QString Kernel::getBestRoute()
+{
+	return bestRoute;
 }
