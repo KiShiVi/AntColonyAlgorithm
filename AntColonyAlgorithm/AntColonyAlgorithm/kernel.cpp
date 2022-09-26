@@ -45,7 +45,7 @@ void Kernel::setNodeProperties(int i, int j, float distance, bool isEdge)
 
 QString Kernel::getNextGeneration()
 {
-	float gobalMinimalDistance = 0;
+	float globalMinimalDistance = 0;
 	QList<int> globalOptimalRoute;
 
 	float* allDistances = new float[m_kParameter];
@@ -120,10 +120,10 @@ QString Kernel::getNextGeneration()
 		allRoutes.append(route);
 		allDistances[k] = summaryDistance;
 
-		if (summaryDistance < gobalMinimalDistance || k == 0)
+		if (summaryDistance < globalMinimalDistance || k == 0)
 		{
 			globalOptimalRoute = route;
-			gobalMinimalDistance = summaryDistance;
+			globalMinimalDistance = summaryDistance;
 		}
 
 		++m_iterationsCounter;
@@ -142,14 +142,14 @@ QString Kernel::getNextGeneration()
 	QString result;
 	for (int i = 0; i < globalOptimalRoute.count() - 1; ++i)
 		result += QString::number(globalOptimalRoute[i]) + "-";
-	result += QString::number(globalOptimalRoute[globalOptimalRoute.count() - 1]) + " | dist: " + QString::number(gobalMinimalDistance);
+	result += QString::number(globalOptimalRoute[globalOptimalRoute.count() - 1]) + " | dist: " + QString::number(globalMinimalDistance);
 
 	delete[] allDistances;
 	delete[] availableOfNodes;
 
-	if (gobalMinimalDistance < bestDistance || bestDistance == 0)
+	if (globalMinimalDistance < bestDistance || bestDistance == 0)
 	{
-		bestDistance = gobalMinimalDistance;
+		bestDistance = globalMinimalDistance;
 		bestRoute = result;
 	}
 
