@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,11 @@ namespace GeneticAlgorithm
     internal class Kernel
     {
         private static Random rand = new Random();
-        public delegate double GAFunction(double[] values);
+        public delegate double GAFunction(double[] values, string infixPhrase);
 
         public class GA
         {
+            public string infixPhrase;
             public double MutationRate;
             public double CrossoverRate;
             public int ChromosomeLength;
@@ -30,7 +32,7 @@ namespace GeneticAlgorithm
                 get { return getFitness; }
                 set { getFitness = value; }
             }
-            public GA(double XoverRate, double mutRate, int popSize, int genSize, int ChromLength)
+            public GA(double XoverRate, double mutRate, int popSize, int genSize, int ChromLength, string infixPhrase)
             {
                 Elitism = false;
                 MutationRate = mutRate;
@@ -38,6 +40,7 @@ namespace GeneticAlgorithm
                 PopulationSize = popSize;
                 GenerationSize = genSize;
                 ChromosomeLength = ChromLength;
+                this.infixPhrase = infixPhrase;
             }
 
             public void LaunchGA()
@@ -88,7 +91,7 @@ namespace GeneticAlgorithm
                 for (int i = 0; i < PopulationSize; i++)
                 {
                     Chromosome g = ((Chromosome)CurrentGenerationList[i]);
-                    g.ChromosomeFitness = FitnessFunction(g.ChromosomeGenes);
+                    g.ChromosomeFitness = FitnessFunction(g.ChromosomeGenes, infixPhrase);
                     TotalFitness += g.ChromosomeFitness;
                 }
                 CurrentGenerationList.Sort(new ChromosomeComparer());
@@ -156,7 +159,7 @@ namespace GeneticAlgorithm
                 if (createGenes)
                 {
                     for (int i = 0; i < ChromosomeLength; i++)
-                        ChromosomeGenes[i] = rand.NextDouble();
+                        ChromosomeGenes[i] = rand.NextDouble() * 2000 - 1000;
                 }
             }
 
@@ -211,14 +214,15 @@ namespace GeneticAlgorithm
             }
         }
 
-        public static double GenAlgTestFcn(double[] values)
+        public static double GenAlgTestFcn(double[] values, string infixPhrase)
         {
             if (values.GetLength(0) != 2)
                 throw new Exception("should only have 2 args");
 
             double x = values[0]; double y = values[1];
 
-            return (15 * x * y * (1 - x) * (1 - y) * Math.Sin(Math.PI * x) * Math.Sin(Math.PI * y));
+            //return (15 * x * y * (1 - x) * (1 - y) * Math.Sin(Math.PI * x) * Math.Sin(Math.PI * y));
+            return MathParserSpace.MathParser.calculate(x, y, infixPhrase);
         }
 
         //static void Main(string[] args)
