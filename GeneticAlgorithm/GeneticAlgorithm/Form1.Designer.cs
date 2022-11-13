@@ -156,9 +156,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(16, 169);
+            this.button1.Location = new System.Drawing.Point(324, 91);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(158, 49);
             this.button1.TabIndex = 9;
             this.button1.Text = "Начать";
             this.button1.UseVisualStyleBackColor = true;
@@ -204,6 +204,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 14;
+            this.textBox1.Text = "-100";
             // 
             // textBox2
             // 
@@ -211,6 +212,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 15;
+            this.textBox2.Text = "100";
             // 
             // label8
             // 
@@ -225,7 +227,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(771, 378);
+            this.ClientSize = new System.Drawing.Size(697, 361);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
