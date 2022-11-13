@@ -25,7 +25,7 @@ namespace GeneticAlgorithm
                 (int)numericUpDown3.Value, 
                 (int)numericUpDown4.Value, 
                 2,
-                infixPhraseTextBox.Text);
+                infixPhraseTextBox.Text,double.Parse(textBox1.Text), double.Parse(textBox2.Text));
 
             ga.FitnessFunction = new GAFunction(GenAlgTestFcn);
             ga.Elitism = true;
@@ -45,5 +45,6 @@ namespace GeneticAlgorithm
         {
             infixPhraseTextBox.Text = "15 * x * y * (1 - x) * (1 - y) * sin(pi * x) * sin(pi * y)";
         }
+
     }
 }

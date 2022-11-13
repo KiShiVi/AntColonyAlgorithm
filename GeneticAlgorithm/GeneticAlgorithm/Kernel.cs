@@ -22,6 +22,8 @@ namespace GeneticAlgorithm
             public int PopulationSize;
             public int GenerationSize;
             public double TotalFitness;
+            public double Max;
+            public double Min;
             public bool Elitism;
             private ArrayList CurrentGenerationList;
             private ArrayList NextGenerationList;
@@ -32,7 +34,7 @@ namespace GeneticAlgorithm
                 get { return getFitness; }
                 set { getFitness = value; }
             }
-            public GA(double XoverRate, double mutRate, int popSize, int genSize, int ChromLength, string infixPhrase)
+            public GA(double XoverRate, double mutRate, int popSize, int genSize, int ChromLength, string infixPhrase, double max, double min)
             {
                 Elitism = false;
                 MutationRate = mutRate;
@@ -41,6 +43,8 @@ namespace GeneticAlgorithm
                 GenerationSize = genSize;
                 ChromosomeLength = ChromLength;
                 this.infixPhrase = infixPhrase;
+                Max = max;
+                Min = min;
             }
 
             public void LaunchGA()
@@ -52,7 +56,7 @@ namespace GeneticAlgorithm
 
                 for (int i = 0; i < PopulationSize; i++)
                 {
-                    Chromosome g = new Chromosome(ChromosomeLength, true);
+                    Chromosome g = new Chromosome(ChromosomeLength,this.Max,this.Min);
                     CurrentGenerationList.Add(g);
                 }
 
@@ -152,22 +156,24 @@ namespace GeneticAlgorithm
             public double ChromosomeFitness;
             public static double ChromosomeMutationRate;
 
-            public Chromosome(int length, bool createGenes)
+            public Chromosome(int length)
             {
                 ChromosomeLength = length;
                 ChromosomeGenes = new double[length];
-                if (createGenes)
-                {
+            }
+            public Chromosome(int length, double max, double min)
+            {
+                ChromosomeLength = length;
+                ChromosomeGenes = new double[length];
                     for (int i = 0; i < ChromosomeLength; i++)
-                        ChromosomeGenes[i] = rand.NextDouble() * 2000 - 1000;
-                }
+                        ChromosomeGenes[i] = rand.NextDouble() * (Math.Abs(max) + Math.Abs(min)) - (Math.Abs(max) + Math.Abs(min))/2;
             }
 
             public void Crossover(ref Chromosome Chromosome2, out Chromosome child1, out Chromosome child2)
             {
                 int position = (int)(rand.NextDouble() * (double)ChromosomeLength);
-                child1 = new Chromosome(ChromosomeLength, false);
-                child2 = new Chromosome(ChromosomeLength, false);
+                child1 = new Chromosome(ChromosomeLength);
+                child2 = new Chromosome(ChromosomeLength);
                 for (int i = 0; i < ChromosomeLength; i++)
                 {
                     if (i < position)
