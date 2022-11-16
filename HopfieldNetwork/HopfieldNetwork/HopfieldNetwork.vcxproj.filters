@@ -26,28 +26,44 @@
     <QtRcc Include="hopfieldnetwork.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="hopfieldnetwork.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
     <QtMoc Include="hopfieldnetwork.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <ClCompile Include="hopfieldnetwork.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ResourceCompile Include="$pro_name$.rc">
-    </ResourceCompile>
-    <None Include="$pro_name$.ico">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="$pro_name$.def">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="HopfieldNetwork.ico">
       <Filter>Resource Files</Filter>
     </None>
     <ResourceCompile Include="HopfieldNetwork.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kernel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="matrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="cell.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="kernel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
