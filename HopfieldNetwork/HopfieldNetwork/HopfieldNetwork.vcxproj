@@ -92,6 +92,7 @@
     <ClCompile Include="hopfieldnetwork.cpp" />
     <ClCompile Include="kernel.cpp" />
     <ClCompile Include="main.cpp" />
+    <None Include="ClassDiagram.cd" />
     <None Include="HopfieldNetwork.ico" />
     <ResourceCompile Include="HopfieldNetwork.rc" />
   </ItemGroup>

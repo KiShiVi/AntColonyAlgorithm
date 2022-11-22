@@ -7,7 +7,9 @@ Kernel::Kernel(QObject *parent)
 }
 
 Kernel::~Kernel()
-{}
+{
+	delete m_database;
+}
 
 void Kernel::updateDatabase(QList<int> newData)
 {
