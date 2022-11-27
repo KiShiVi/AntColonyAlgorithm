@@ -20,11 +20,14 @@ namespace GeneticAlgorithm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            GA ga = new GA((double)numericUpDown1.Value / 100, 
+            int amountOfBits = radioButton1.Checked ? 2 : 5;
+            GA ga = new GA(
+                !radioButton1.Checked,
+                (double)numericUpDown1.Value / 100, 
                 (double)numericUpDown2.Value / 100, 
                 (int)numericUpDown3.Value, 
-                (int)numericUpDown4.Value, 
-                2,
+                (int)numericUpDown4.Value,
+                amountOfBits,
                 infixPhraseTextBox.Text,double.Parse(textBox1.Text), double.Parse(textBox2.Text));
 
             ga.FitnessFunction = new GAFunction(GenAlgTestFcn);

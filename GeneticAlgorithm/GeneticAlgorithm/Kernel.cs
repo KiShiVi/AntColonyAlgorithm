@@ -15,6 +15,7 @@ namespace GeneticAlgorithm
 
         public class GA
         {
+            public bool isBit;
             public string infixPhrase;
             public double MutationRate;
             public double CrossoverRate;
@@ -34,8 +35,9 @@ namespace GeneticAlgorithm
                 get { return getFitness; }
                 set { getFitness = value; }
             }
-            public GA(double XoverRate, double mutRate, int popSize, int genSize, int ChromLength, string infixPhrase, double max, double min)
+            public GA(bool _isBit, double XoverRate, double mutRate, int popSize, int genSize, int ChromLength, string infixPhrase, double max, double min)
             {
+                isBit = _isBit;
                 Elitism = false;
                 MutationRate = mutRate;
                 CrossoverRate = XoverRate;
@@ -49,6 +51,8 @@ namespace GeneticAlgorithm
 
             public void LaunchGA()
             {
+                if (ChromosomeLength == 0b101)
+                    ChromosomeLength -= 0b011;
                 FitnessList = new ArrayList();
                 CurrentGenerationList = new ArrayList(GenerationSize);
                 NextGenerationList = new ArrayList(GenerationSize);
@@ -56,7 +60,7 @@ namespace GeneticAlgorithm
 
                 for (int i = 0; i < PopulationSize; i++)
                 {
-                    Chromosome g = new Chromosome(ChromosomeLength,this.Max,this.Min);
+                    Chromosome g = new Chromosome(ChromosomeLength,this.Max,this.Min, false);
                     CurrentGenerationList.Add(g);
                 }
 
@@ -161,12 +165,18 @@ namespace GeneticAlgorithm
                 ChromosomeLength = length;
                 ChromosomeGenes = new double[length];
             }
-            public Chromosome(int length, double max, double min)
+            public Chromosome(int length, double max, double min, bool isBit)
             {
                 ChromosomeLength = length;
                 ChromosomeGenes = new double[length];
-                    for (int i = 0; i < ChromosomeLength; i++)
-                        ChromosomeGenes[i] = rand.NextDouble() * (Math.Abs(max) + Math.Abs(min)) - (Math.Abs(max) + Math.Abs(min))/2;
+                for (int i = 0; i < ChromosomeLength; i++)
+                {
+                    double value = rand.NextDouble() * (Math.Abs(max) + Math.Abs(min)) - (Math.Abs(max) + Math.Abs(min)) / 2;
+                    if (!isBit)
+                        ChromosomeGenes[i] = value;
+                    else
+                        ChromosomeGenes = DecimalToBit(value);
+                }
             }
 
             public void Crossover(ref Chromosome Chromosome2, out Chromosome child1, out Chromosome child2)
@@ -226,35 +236,40 @@ namespace GeneticAlgorithm
                 throw new Exception("should only have 2 args");
 
             double x = values[0]; double y = values[1];
-
-            //return (15 * x * y * (1 - x) * (1 - y) * Math.Sin(Math.PI * x) * Math.Sin(Math.PI * y));
             return MathParserSpace.MathParser.calculate(x, y, infixPhrase);
         }
 
-        //static void Main(string[] args)
-        //{
-        //    Console.WriteLine("\nFinding global optimum values to the function:\n");
-        //    Console.WriteLine("f(x,y) = 15xy(1-x)(1-y)sin(pi*x)sin(pi*y)\n");
-        //    Console.WriteLine("by using a genetic algorithm with initial parameters: \n");
-        //    Console.WriteLine("Crossover\t=80%");
-        //    Console.WriteLine("Mutation\t=5%");
-        //    Console.WriteLine("Population size\t=100");
-        //    Console.WriteLine("Generations\t=2000");
-        //    Console.WriteLine("Chromosome size\t=2\n");
-        //    Console.WriteLine("Actual max values are: x_max = 0.5 and y_max = 0.5\n");
+        private double bitToDecimal(double[] bitValue, int amountOfBits)
+        {
+            double result = 0;
+            int powValue = 0;
+            for(int i = amountOfBits - 1; i >= 0; --i)
+            {
+                result += bitValue[i] * Math.Pow(2, powValue);
+                ++powValue;
+            }
+            return result;
+        }
 
-        //    GA ga = new GA(0.8, 0.05, 100, 2000, 2);
-        //    ga.FitnessFunction = new GAFunction(GenAlgTestFcn);
-        //    ga.Elitism = true;
-        //    ga.LaunchGA();
+        static private double[] DecimalToBit(double value)
+        {
+            int temp = 1;
 
-        //    double[] values; double fitness;
-        //    ga.GetBestValues(out values, out fitness);
+            for (int i = 0; i < 4; ++i)
+                temp *= 2;
 
-        //    Console.WriteLine("Calculated max values are: \nx_max = {0} \ny_max = {1}\n", values[0], values[1]);
-        //    Console.WriteLine("f(x_max,y_max) = f({0},{1}) = {2}", values[0], values[1], fitness);
-        //    Console.WriteLine("\nPress ENTER to continue program");
-        //    Console.ReadLine();
-        //}
+            int intValue = (int)value;
+            int idx = 0;
+            double[] result = new double[5];
+
+            for (int i = temp; temp > 0; temp = temp / 2)
+            {
+                if ((temp & intValue) > 0)
+                    result[idx] = 1;
+                else
+                    result[idx] = 0;
+            }
+            return result;
+        }
     }
 }
