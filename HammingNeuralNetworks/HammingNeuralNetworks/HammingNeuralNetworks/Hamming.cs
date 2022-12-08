@@ -27,6 +27,7 @@ namespace HammingNeuralNetworks
 
         static public int letterSearch(Matrix matrix)
         {
+            int k = 0, cur = 0;
             double Emax = 0.1;
             for (int j = 0; j < 10; j++)
             {
@@ -42,7 +43,6 @@ namespace HammingNeuralNetworks
                         matrix.outValue[i] = 0;
                     else
                         matrix.outValue[i] = matrix.status[i];
-                int k = 0, cur = 0;
                 for (int i = 0; i < 6; i++)
                 {
                     if (matrix.outValue[i] != 0)
@@ -61,7 +61,8 @@ namespace HammingNeuralNetworks
 
                 }
             }
-            return -1;
+            cur = -1;
+            return cur;
         }
     }
 }
