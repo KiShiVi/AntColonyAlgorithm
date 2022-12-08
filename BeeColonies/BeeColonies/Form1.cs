@@ -31,5 +31,9 @@ namespace BeeColonies
 
         }
 
+        private void txb_polinom_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

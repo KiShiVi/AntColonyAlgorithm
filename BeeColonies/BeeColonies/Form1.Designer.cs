@@ -112,9 +112,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(123, 76);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(153, 15);
+            this.label2.Size = new System.Drawing.Size(156, 15);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Количество лучших точек";
+            this.label2.Text = "Количество элитных точек";
             // 
             // label3
             // 
@@ -185,6 +185,7 @@
             this.txb_polinom.Size = new System.Drawing.Size(402, 23);
             this.txb_polinom.TabIndex = 14;
             this.txb_polinom.Text = "15 * x * y * (1 - x) * (1 - y) * sin(pi * x) * sin(pi * y)";
+            this.txb_polinom.TextChanged += new System.EventHandler(this.txb_polinom_TextChanged);
             // 
             // txb_minX
             // 
