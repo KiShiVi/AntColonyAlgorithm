@@ -12,7 +12,7 @@ namespace SimulatedAnnealing
         public int[] kVertexes;
         public double temperature;
         public double L,kL;
-        public Annealing(List<List<NumericUpDown>> list)
+        public Annealing(List<List<NumericUpDown>> list,double temp)
         {
             Random random = new Random();
             vertexes = new int[list.Count + 1];
@@ -26,7 +26,7 @@ namespace SimulatedAnnealing
                 if (ind) i--;
                 ind = false;
             }
-            temperature = 100;
+            temperature = temp;
             pp(list);
             kL = L;
             kVertexes = vertexes;

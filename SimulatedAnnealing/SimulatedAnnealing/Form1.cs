@@ -21,19 +21,9 @@ namespace SimulatedAnnealing
         Random random = new Random();
         List<List<NumericUpDown>> listOfGraphNodes = new List<List<NumericUpDown>>();
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            Annealing annealing = new Annealing(listOfGraphNodes);
+            Annealing annealing = new Annealing(listOfGraphNodes,(double)p_startTemp.Value);
             for (; annealing.temperature > (double)p_minTemp.Value;annealing.temperature -= (double)p_temp.Value)
             {
                 annealing.gg(listOfGraphNodes);
@@ -56,6 +46,7 @@ namespace SimulatedAnnealing
                 label3.Text += annealing.vertexes[i] + " ";
             }
             label3.Text += "] с длиной маршрута: " + annealing.L;
+            label3.Visible = true;
         }
 
 
@@ -93,7 +84,7 @@ namespace SimulatedAnnealing
             x = 96;
             y = 15;
             p_amountOfNodes_ValueChanged(sender, e);
-
+            label3.Visible = false;
         }
     }
 }

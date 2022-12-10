@@ -37,9 +37,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.p_minTemp = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.p_startTemp = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.p_amountOfNodes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p_temp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p_minTemp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p_startTemp)).BeginInit();
             this.SuspendLayout();
             // 
             // p_amountOfNodes
@@ -87,6 +91,11 @@
             // 
             this.p_temp.DecimalPlaces = 3;
             this.p_temp.Location = new System.Drawing.Point(668, 12);
+            this.p_temp.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.p_temp.Minimum = new decimal(new int[] {
             1,
             0,
@@ -133,7 +142,7 @@
             this.p_minTemp.DecimalPlaces = 3;
             this.p_minTemp.Location = new System.Drawing.Point(668, 41);
             this.p_minTemp.Maximum = new decimal(new int[] {
-            99,
+            9999,
             0,
             0,
             0});
@@ -150,7 +159,6 @@
             0,
             0,
             0});
-            this.p_minTemp.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label5
             // 
@@ -159,13 +167,55 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(0, 15);
             this.label5.TabIndex = 7;
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(366, 73);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(188, 15);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Введите начальную температуру";
+            // 
+            // p_startTemp
+            // 
+            this.p_startTemp.DecimalPlaces = 3;
+            this.p_startTemp.Location = new System.Drawing.Point(668, 70);
+            this.p_startTemp.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.p_startTemp.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.p_startTemp.Name = "p_startTemp";
+            this.p_startTemp.Size = new System.Drawing.Size(120, 23);
+            this.p_startTemp.TabIndex = 11;
+            this.p_startTemp.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(545, 73);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(0, 15);
+            this.label7.TabIndex = 10;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.p_startTemp);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.p_minTemp);
             this.Controls.Add(this.label5);
@@ -181,6 +231,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.p_amountOfNodes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p_temp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p_minTemp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p_startTemp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -197,5 +248,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown p_minTemp;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown p_startTemp;
+        private System.Windows.Forms.Label label7;
     }
 }
