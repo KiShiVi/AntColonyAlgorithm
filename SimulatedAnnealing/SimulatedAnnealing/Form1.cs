@@ -45,6 +45,7 @@ namespace SimulatedAnnealing
             {
                 label3.Text += annealing.vertexes[i] + " ";
             }
+            label3.Text += annealing.vertexes[0] + " ";
             label3.Text += "] с длиной маршрута: " + annealing.L;
             label3.Visible = true;
         }
