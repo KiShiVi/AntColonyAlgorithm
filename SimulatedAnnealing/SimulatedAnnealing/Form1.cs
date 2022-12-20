@@ -26,7 +26,7 @@ namespace SimulatedAnnealing
             Annealing annealing = new Annealing(listOfGraphNodes,(double)p_startTemp.Value);
             for (; annealing.temperature > (double)p_minTemp.Value;annealing.temperature -= (double)p_temp.Value)
             {
-                annealing.gg(listOfGraphNodes);
+                annealing.permutation(listOfGraphNodes);
                 if (annealing.temperature < 0)
                     annealing.temperature = 1;
                 if ((100 * Math.Exp(-(annealing.kL - annealing.L) / annealing.temperature)) > random.Next(1, 100))

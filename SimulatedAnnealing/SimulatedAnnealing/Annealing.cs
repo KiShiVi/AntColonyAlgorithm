@@ -27,11 +27,11 @@ namespace SimulatedAnnealing
                 ind = false;
             }
             temperature = temp;
-            pp(list);
+            determiningTheBestPath(list);
             kL = L;
             kVertexes = vertexes;
         }
-        public void gg(List<List<NumericUpDown>> list)
+        public void permutation(List<List<NumericUpDown>> list)
         {
             Random random = new Random();
             int i = random.Next(0, vertexes.Length - 1);
@@ -41,9 +41,9 @@ namespace SimulatedAnnealing
             int num = kVertexes[i];
             kVertexes[i] = kVertexes[j];
             kVertexes[j] = num;
-            pp(list);
+            determiningTheBestPath(list);
         }
-        void pp(List<List<NumericUpDown>> list)
+        private void determiningTheBestPath(List<List<NumericUpDown>> list)
         {
             L= 0;
             for (int i = 0; i < list.Count; i++)

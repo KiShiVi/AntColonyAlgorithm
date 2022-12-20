@@ -40,6 +40,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.p_startTemp = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.p_amountOfNodes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p_temp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p_minTemp)).BeginInit();
@@ -208,11 +209,21 @@
             this.label7.Size = new System.Drawing.Size(0, 15);
             this.label7.TabIndex = 10;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(138, 15);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(119, 15);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Количество вершин";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.p_startTemp);
             this.Controls.Add(this.label7);
@@ -251,5 +262,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown p_startTemp;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
